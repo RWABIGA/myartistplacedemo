@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Airtable token — keep local, never push
+config.js
+
+# Temporary screenshots (local dev only)
+temporary screenshots/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

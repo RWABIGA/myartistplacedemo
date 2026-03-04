@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Les Événements — My Artist Place</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&family=Ubuntu+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { purple: { DEFAULT: '#7300ff', dark: '#5a00cc' }, gold: '#FFC400', green: '#41D33E' }, fontFamily: { heading: ['Ubuntu', 'sans-serif'], body: ['Ubuntu Sans', 'sans-serif'] } } } };
+  </script>
+  <style>
+    * { box-sizing: border-box; } body { font-family: 'Ubuntu Sans', sans-serif; font-weight: 300; color: #000; margin: 0; }
+    h1, h2, h3, h4, nav { font-family: 'Ubuntu', sans-serif; }
+    .nav-link { position: relative; transition: color 0.2s; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#7300ff; transition: width 0.25s; }
+    .nav-link:hover::after { width:100%; } .nav-link:hover { color:#7300ff; }
+    .dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); }
+    .dropdown-menu { opacity:0; pointer-events:none; transform:translateY(-8px); transition: opacity 0.2s, transform 0.2s; }
+    .btn-primary { background:#7300ff; color:#fff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; box-shadow:0 4px 16px rgba(115,0,255,0.35); display:inline-block; }
+    .btn-primary:hover { background:#5a00cc; transform:translateY(-2px); }
+    .btn-outline { border:2px solid #7300ff; color:#7300ff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.65rem 1.5rem; transition:background 0.2s,color 0.2s; display:inline-block; }
+    .btn-outline:hover { background:#7300ff; color:#fff; }
+    .event-card { transition: transform 0.25s, box-shadow 0.25s; }
+    .event-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(115,0,255,0.15); }
+    footer a { transition: color 0.2s; } footer a:hover { color: #FFC400; }
+    .spinner { border: 3px solid rgba(115,0,255,0.2); border-top-color: #7300ff; border-radius: 50%; width: 40px; height: 40px; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100" style="box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-9 w-auto" /></a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-heading font-medium">
+        <a href="index.html" class="nav-link text-gray-800">Accueil</a>
+        <div class="dropdown relative">
+          <button class="nav-link flex items-center gap-1 py-2" style="color:#7300ff">La Plateforme <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dropdown-menu absolute top-full left-0 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]" style="box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Entreprises</p>
+            <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil pour les entreprises</a>
+            <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg bg-purple-50 text-gray-900 font-medium">Les événements</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+            <a href="s-inscrire-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Créer un Événement</a>
+            <div class="border-t border-gray-100 my-2"></div>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Artistes</p>
+            <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+            <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ Artistes</a>
+          </div>
+        </div>
+        <a href="a-propos.html" class="nav-link text-gray-800">À propos</a>
+        <a href="blog.html" class="nav-link text-gray-800">Blog</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="se-connecter.html" class="btn-outline text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-sm">Créer un évènement</a>
+      </div>
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-gray-100">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Accueil</a>
+      <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil</a>
+      <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg bg-purple-50 font-medium" style="color:#7300ff">Les événements</a>
+      <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+      <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+      <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ</a>
+      <div class="pt-4 flex flex-col gap-2">
+        <a href="se-connecter.html" class="btn-outline text-center text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-center text-sm">Créer un évènement</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-28 pb-16 text-center" style="background: linear-gradient(135deg, #f8f4ff 0%, #fdfbff 100%);">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-heading font-semibold text-gray-900 mb-4" style="font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.03em;">Les événements à Paris</h1>
+      <p class="font-body text-gray-500 mb-8" style="font-weight:300; font-size:1.05rem; line-height:1.7;">Découvrez tous nos événements artistiques — concerts, marchés de créateurs, expositions et bien plus encore.</p>
+      <!-- Filters -->
+      <div class="flex flex-wrap justify-center gap-2" id="filter-bar">
+        <button onclick="filterEvents('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-heading font-semibold transition-colors" style="background:#7300ff; color:#fff;" data-type="all">Tous</button>
+        <button onclick="filterEvents('Live')" class="filter-btn px-5 py-2 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600 hover:border-purple-DEFAULT transition-colors" data-type="Live">Prestations Live</button>
+        <button onclick="filterEvents('Marché')" class="filter-btn px-5 py-2 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600 hover:border-purple-DEFAULT transition-colors" data-type="Marché">Marchés</button>
+        <button onclick="filterEvents('Exposition')" class="filter-btn px-5 py-2 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600 hover:border-purple-DEFAULT transition-colors" data-type="Exposition">Expositions</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS GRID -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <!-- Loading spinner -->
+      <div id="loading" class="flex justify-center py-20">
+        <div class="spinner"></div>
+      </div>
+      <!-- Error state -->
+      <div id="error-state" class="hidden text-center py-20">
+        <p class="text-gray-400 font-body mb-4">Impossible de charger les événements.</p>
+        <p class="text-gray-300 text-sm">Vérifiez votre token Airtable dans config.js</p>
+      </div>
+      <!-- Events grid -->
+      <div id="events-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <!-- Empty state -->
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-5xl mb-4">🎭</div>
+        <p class="font-heading font-semibold text-gray-700 text-lg">Aucun événement trouvé</p>
+        <p class="font-body text-gray-400 mt-2">Essayez un autre filtre</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-black text-center">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="font-heading font-semibold text-white mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Organisez votre événement</h2>
+      <p class="font-body text-white/60 mb-8" style="font-weight:300; line-height:1.7;">Créez votre compte gratuitement et publiez vos événements sur notre plateforme.</p>
+      <a href="s-inscrire-entreprise.html" class="btn-primary text-base px-10 py-4">Créer mon compte</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div><img src="brand_assets/logo.png" alt="My Artist Place" class="h-8 w-auto mb-4 brightness-0 invert" /><p class="text-sm" style="font-weight:300;line-height:1.7;">La plateforme événementielle de référence à Paris.</p></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Entreprises</h4><ul class="space-y-2 text-sm"><li><a href="application-map.html">L'outil</a></li><li><a href="espace-entreprise.html">Les événements</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="s-inscrire-entreprise.html">Créer un événement</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Artistes</h4><ul class="space-y-2 text-sm"><li><a href="artistes.html">Candidatures</a></li><li><a href="faq.html">FAQ</a></li><li><a href="se-connecter.html">Connexion</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Compagnie</h4><ul class="space-y-2 text-sm"><li><a href="a-propos.html">À propos</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-center text-xs"><p>© 2024 My Artist Place. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
+    let allEvents = [];
+
+    const typeColors = {
+      'Live': { bg: '#7300ff', text: '#fff' },
+      'Marché': { bg: '#FFC400', text: '#000' },
+      'Exposition': { bg: '#41D33E', text: '#fff' },
+    };
+
+    function getTypeColor(type) {
+      for (const key in typeColors) { if (type && type.includes(key)) return typeColors[key]; }
+      return { bg: '#6b7280', text: '#fff' };
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      try {
+        return new Date(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch { return dateStr; }
+    }
+
+    function renderEvents(events) {
+      const grid = document.getElementById('events-grid');
+      const empty = document.getElementById('empty-state');
+      if (!events.length) { grid.classList.add('hidden'); empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+      grid.classList.remove('hidden');
+      grid.innerHTML = events.map(ev => {
+        const f = ev.fields || {};
+        const name = f['Name'] || f['Nom'] || f['name'] || f['titre'] || f['Title'] || 'Événement';
+        const date = formatDate(f['Date'] || f['date'] || f['Date début'] || '');
+        const location = f['Lieu'] || f['Location'] || f['location'] || 'Paris';
+        const type = f['Type'] || f['type'] || f['Catégorie'] || '';
+        const img = (f['Image'] && f['Image'][0]) ? f['Image'][0].url : `https://placehold.co/600x400/7300ff/ffffff?text=${encodeURIComponent(name)}`;
+        const desc = f['Description'] || f['description'] || '';
+        const tc = getTypeColor(type);
+        return `
+          <div class="event-card rounded-3xl overflow-hidden" style="box-shadow:0 4px 24px rgba(115,0,255,0.08);" data-type="${type}">
+            <div class="relative h-52 overflow-hidden">
+              <img src="${img}" alt="${name}" class="w-full h-full object-cover" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              ${type ? `<div class="absolute top-4 left-4"><span class="text-xs font-heading font-semibold px-3 py-1 rounded-full" style="background:${tc.bg};color:${tc.text};">${type}</span></div>` : ''}
+              ${date ? `<div class="absolute bottom-4 left-4 text-white text-sm font-heading font-medium">${date}</div>` : ''}
+            </div>
+            <div class="p-6">
+              <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2 leading-snug">${name}</h3>
+              ${location ? `<div class="flex items-center gap-1.5 text-gray-400 text-sm mb-3"><svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>${location}</div>` : ''}
+              ${desc ? `<p class="font-body text-gray-500 text-sm line-clamp-2" style="font-weight:300;line-height:1.6;">${desc}</p>` : ''}
+              <a href="s-inscrire-entreprise.html" class="inline-flex items-center gap-2 mt-4 text-sm font-heading font-semibold hover:gap-3 transition-all" style="color:#7300ff">En savoir plus <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function filterEvents(type) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        const isActive = btn.dataset.type === type;
+        btn.style.background = isActive ? '#7300ff' : '';
+        btn.style.color = isActive ? '#fff' : '';
+        btn.style.borderColor = isActive ? '#7300ff' : '';
+        btn.classList.toggle('active', isActive);
+      });
+      const filtered = type === 'all' ? allEvents : allEvents.filter(ev => {
+        const t = (ev.fields['Type'] || ev.fields['type'] || ev.fields['Catégorie'] || '');
+        return t.includes(type);
+      });
+      renderEvents(filtered);
+    }
+
+    async function loadEvents() {
+      try {
+        if (typeof AIRTABLE_TOKEN === 'undefined' || AIRTABLE_TOKEN === 'YOUR_AIRTABLE_PERSONAL_ACCESS_TOKEN_HERE') {
+          throw new Error('No token');
+        }
+        const data = await airtableFetch('events', '?maxRecords=50&view=Grid%20view');
+        allEvents = data.records || [];
+        document.getElementById('loading').classList.add('hidden');
+        renderEvents(allEvents);
+      } catch (e) {
+        document.getElementById('loading').classList.add('hidden');
+        // Show mock events if no API token
+        allEvents = getMockEvents();
+        renderEvents(allEvents);
+      }
+    }
+
+    function getMockEvents() {
+      return [
+        { fields: { Name: 'Soirée Jazz au Lobby', Date: '2024-03-15', Lieu: 'Hôtel Le Marais, Paris', Type: 'Live', Description: 'Une soirée jazz intimiste avec des musiciens de renom dans un cadre hôtelier unique.', Image: [{url:'https://placehold.co/600x400/7300ff/fff?text=Jazz'}] }},
+        { fields: { Name: 'Marché de Créateurs Printemps', Date: '2024-03-22', Lieu: 'Espace République, Paris', Type: 'Marché', Description: '30 créateurs parisiens réunis pour un week-end de découverte artisanale.', Image: [{url:'https://placehold.co/600x400/FFC400/000?text=Marché'}] }},
+        { fields: { Name: 'Exposition — "Lumières de Paris"', Date: '2024-04-01', Lieu: 'Hôtel Concorde, Paris', Type: 'Exposition', Description: 'Une exposition photo de 3 mois mettant en valeur la lumière parisienne sous toutes ses formes.', Image: [{url:'https://placehold.co/600x400/41D33E/fff?text=Expo'}] }},
+        { fields: { Name: 'Stand-up Comedy Night', Date: '2024-03-29', Lieu: 'Bar du Palais, Paris', Type: 'Live', Description: 'Une nuit de stand-up avec 5 humoristes montants de la scène parisienne.', Image: [{url:'https://placehold.co/600x400/3d0099/fff?text=Comedy'}] }},
+        { fields: { Name: 'Pop-up Bijoux & Accessoires', Date: '2024-04-05', Lieu: 'Boutique Éphémère, Le Marais', Type: 'Marché', Description: 'Découvrez des créateurs de bijoux artisanaux et d\'accessoires uniques en édition limitée.', Image: [{url:'https://placehold.co/600x400/e6b000/000?text=Bijoux'}] }},
+        { fields: { Name: 'Atelier Peinture Live', Date: '2024-04-12', Lieu: 'Hôtel Arts, Montmartre', Type: 'Live', Description: 'Un artiste peint en direct devant vos clients. Une expérience immersive et mémorable.', Image: [{url:'https://placehold.co/600x400/7300ff/fff?text=Peinture'}] }},
+      ];
+    }
+
+    loadEvents();
+  </script>
+</body>
+</html>

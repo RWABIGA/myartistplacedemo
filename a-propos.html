@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>À propos — My Artist Place</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&family=Ubuntu+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { purple: { DEFAULT: '#7300ff', dark: '#5a00cc' }, gold: '#FFC400', green: '#41D33E' }, fontFamily: { heading: ['Ubuntu', 'sans-serif'], body: ['Ubuntu Sans', 'sans-serif'] } } } };
+  </script>
+  <style>
+    * { box-sizing: border-box; } body { font-family: 'Ubuntu Sans', sans-serif; font-weight: 300; color: #000; margin: 0; }
+    h1, h2, h3, h4, nav { font-family: 'Ubuntu', sans-serif; }
+    .nav-link { position:relative; transition:color 0.2s; } .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#7300ff; transition:width 0.25s; } .nav-link:hover::after { width:100%; } .nav-link:hover { color:#7300ff; }
+    .dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); } .dropdown-menu { opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity 0.2s,transform 0.2s; }
+    .btn-primary { background:#7300ff; color:#fff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; box-shadow:0 4px 16px rgba(115,0,255,0.35); display:inline-block; } .btn-primary:hover { background:#5a00cc; transform:translateY(-2px); }
+    .btn-outline { border:2px solid #7300ff; color:#7300ff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.65rem 1.5rem; transition:background 0.2s,color 0.2s; display:inline-block; } .btn-outline:hover { background:#7300ff; color:#fff; }
+    .btn-gold { background:#FFC400; color:#000; font-family:'Ubuntu',sans-serif; font-weight:700; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; display:inline-block; } .btn-gold:hover { background:#e6b000; transform:translateY(-2px); }
+    .fade-up { opacity:0; transform:translateY(32px); transition:opacity 0.6s ease,transform 0.6s ease; } .fade-up.visible { opacity:1; transform:translateY(0); }
+    footer a { transition:color 0.2s; } footer a:hover { color:#FFC400; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100" style="box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-9 w-auto" /></a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-heading font-medium">
+        <a href="index.html" class="nav-link text-gray-800">Accueil</a>
+        <div class="dropdown relative">
+          <button class="nav-link text-gray-800 flex items-center gap-1 py-2">La Plateforme <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dropdown-menu absolute top-full left-0 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]" style="box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Entreprises</p>
+            <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil pour les entreprises</a>
+            <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+            <a href="s-inscrire-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Créer un Événement</a>
+            <div class="border-t border-gray-100 my-2"></div>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Artistes</p>
+            <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+            <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ Artistes</a>
+          </div>
+        </div>
+        <a href="a-propos.html" class="nav-link font-semibold" style="color:#7300ff;">À propos</a>
+        <a href="blog.html" class="nav-link text-gray-800">Blog</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="se-connecter.html" class="btn-outline text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-sm">Créer un évènement</a>
+      </div>
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-gray-100"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Accueil</a>
+      <a href="a-propos.html" class="block px-3 py-2 rounded-lg bg-purple-50 font-medium" style="color:#7300ff">À propos</a>
+      <a href="blog.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Blog</a>
+      <div class="pt-4 flex flex-col gap-2">
+        <a href="se-connecter.html" class="btn-outline text-center text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-center text-sm">Créer un évènement</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-20 text-center" style="background:linear-gradient(135deg,#7300ff 0%,#3d0099 100%);">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-heading font-semibold text-white mb-6" style="font-size:clamp(2.2rem,5vw,3.5rem); letter-spacing:-0.03em;">Notre mission</h1>
+      <p class="font-body text-white/80 text-xl leading-relaxed" style="font-weight:300; font-style:italic;">
+        "Créer des rencontres entre des artistes passionnés et des lieux qui veulent vibrer."
+      </p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center fade-up">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 text-sm font-heading font-semibold" style="background:rgba(115,0,255,0.1); color:#7300ff;">Notre histoire</div>
+        <h2 class="font-heading font-semibold text-gray-900 mb-6" style="font-size:clamp(1.8rem,3vw,2.5rem); letter-spacing:-0.03em;">4 ans à donner vie aux espaces parisiens</h2>
+        <div class="font-body text-gray-600 space-y-4" style="font-weight:300; line-height:1.8;">
+          <p>My Artist Place est née d'une conviction simple : l'art appartient partout — dans les hôtels, les restaurants, les halls d'entreprise, les rooftops, les boutiques et les espaces uniques.</p>
+          <p>Depuis plus de 4 ans, nous connectons des créatifs passionnés aux lieux professionnels qui cherchent à créer des expériences culturelles mémorables pour leurs clients.</p>
+          <p>L'art rapproche les gens, inspire l'émerveillement et crée des expériences vivantes. Notre mission est de rendre l'art accessible tout en valorisant les artistes qui lui donnent vie.</p>
+        </div>
+      </div>
+      <div class="relative">
+        <div class="rounded-3xl overflow-hidden" style="box-shadow:0 12px 48px rgba(115,0,255,0.15);">
+          <img src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/fffb5215-a923-41cb-b6af-ab0aa1fd1d88.jpeg" alt="My Artist Place" class="w-full h-80 object-cover" />
+          <div class="absolute inset-0 rounded-3xl" style="background:rgba(115,0,255,0.12); mix-blend-mode:multiply;"></div>
+        </div>
+        <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl p-5" style="box-shadow:0 8px 32px rgba(115,0,255,0.15);">
+          <div class="font-heading font-bold text-3xl" style="color:#7300ff;">+4</div>
+          <div class="font-body text-gray-500 text-sm" style="font-weight:300;">ans d'expérience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="py-20" style="background:linear-gradient(135deg,#f8f4ff 0%,#fdfbff 100%);">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-14 fade-up">
+        <h2 class="font-heading font-semibold text-gray-900" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Ce en quoi nous croyons</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-up">
+        <div class="bg-white rounded-3xl p-8" style="box-shadow:0 4px 24px rgba(115,0,255,0.08);">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(115,0,255,0.1);">
+            <svg class="w-6 h-6" style="color:#7300ff" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-gray-900 text-lg mb-3">La passion avant tout</h3>
+          <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">Nous sélectionnons des artistes qui partagent notre amour de l'art et notre engagement envers la qualité.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8" style="box-shadow:0 4px 24px rgba(115,0,255,0.08);">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(255,196,0,0.15);">
+            <svg class="w-6 h-6" style="color:#e6b000" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-gray-900 text-lg mb-3">Accessibilité de l'art</h3>
+          <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">L'art doit être accessible à tous, partout. Nous apportons la culture dans les espaces du quotidien.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8" style="box-shadow:0 4px 24px rgba(115,0,255,0.08);">
+          <div class="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style="background:rgba(65,211,62,0.12);">
+            <svg class="w-6 h-6" style="color:#41D33E" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="font-heading font-semibold text-gray-900 text-lg mb-3">Communauté d'abord</h3>
+          <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">Nous construisons des ponts durables entre artistes et lieux, pour des collaborations qui durent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOUNDER -->
+  <section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6 fade-up">
+      <div class="rounded-3xl overflow-hidden" style="background:linear-gradient(135deg,#7300ff 0%,#3d0099 100%); box-shadow:0 12px 48px rgba(115,0,255,0.25);">
+        <div class="p-12 md:p-16 grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+          <div class="flex justify-center">
+            <div class="w-28 h-28 rounded-full bg-white/20 flex items-center justify-center font-heading font-bold text-4xl text-white">SP</div>
+          </div>
+          <div class="md:col-span-2 text-white">
+            <svg class="w-10 h-10 opacity-30 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+            <blockquote class="font-body text-white/85 text-lg mb-6" style="font-weight:300; line-height:1.8; font-style:italic;">"My Artist Place est née pour aider les lieux professionnels à animer facilement leurs espaces grâce à des artistes de qualité, tout en gagnant du temps et en attirant plus de clients."</blockquote>
+            <div>
+              <div class="font-heading font-semibold text-white text-lg">Sochanda Pich</div>
+              <div class="text-white/60">PDG & Fondatrice, My Artist Place</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 bg-black text-center">
+    <div class="max-w-3xl mx-auto px-6 fade-up">
+      <h2 class="font-heading font-semibold text-white mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Rejoignez l'aventure</h2>
+      <p class="font-body text-white/60 mb-8" style="font-weight:300; line-height:1.7;">Que vous soyez un lieu ou un artiste, My Artist Place est fait pour vous.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="s-inscrire-entreprise.html" class="btn-primary px-10 py-4">Pour les entreprises</a>
+        <a href="artistes.html" class="btn-gold px-10 py-4">Pour les artistes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div class="col-span-2 md:col-span-1"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-8 w-auto mb-4 brightness-0 invert"/><p class="text-sm" style="font-weight:300;line-height:1.7;">Connecter les artistes aux lieux de vie à Paris.</p></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Entreprises</h4><ul class="space-y-2 text-sm"><li><a href="application-map.html">L'outil</a></li><li><a href="espace-entreprise.html">Événements</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Artistes</h4><ul class="space-y-2 text-sm"><li><a href="artistes.html">Candidatures</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Compagnie</h4><ul class="space-y-2 text-sm"><li><a href="a-propos.html">À propos</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-xs"><p>© 2024 My Artist Place. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

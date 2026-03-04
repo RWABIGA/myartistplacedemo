@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ Artistes & Artisans — My Artist Place</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&family=Ubuntu+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { purple: { DEFAULT: '#7300ff', dark: '#5a00cc' }, gold: '#FFC400', green: '#41D33E' }, fontFamily: { heading: ['Ubuntu', 'sans-serif'], body: ['Ubuntu Sans', 'sans-serif'] } } } };
+  </script>
+  <style>
+    * { box-sizing: border-box; } body { font-family: 'Ubuntu Sans', sans-serif; font-weight: 300; color: #000; margin: 0; }
+    h1, h2, h3, h4, nav { font-family: 'Ubuntu', sans-serif; }
+    .nav-link { position:relative; transition:color 0.2s; } .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#7300ff; transition:width 0.25s; } .nav-link:hover::after { width:100%; } .nav-link:hover { color:#7300ff; }
+    .dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); } .dropdown-menu { opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity 0.2s,transform 0.2s; }
+    .btn-primary { background:#7300ff; color:#fff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; box-shadow:0 4px 16px rgba(115,0,255,0.35); display:inline-block; } .btn-primary:hover { background:#5a00cc; transform:translateY(-2px); }
+    .btn-outline { border:2px solid #7300ff; color:#7300ff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.65rem 1.5rem; transition:background 0.2s,color 0.2s; display:inline-block; } .btn-outline:hover { background:#7300ff; color:#fff; }
+    .btn-gold { background:#FFC400; color:#000; font-family:'Ubuntu',sans-serif; font-weight:700; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; box-shadow:0 4px 16px rgba(255,196,0,0.4); display:inline-block; } .btn-gold:hover { background:#e6b000; transform:translateY(-2px); }
+    .faq-item { border-bottom: 1px solid #f0ebff; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s ease; }
+    .faq-answer.open { max-height: 500px; }
+    .faq-toggle svg { transition: transform 0.3s; }
+    .faq-item.open .faq-toggle svg { transform: rotate(180deg); }
+    .spinner { border:3px solid rgba(115,0,255,0.2); border-top-color:#7300ff; border-radius:50%; width:40px; height:40px; animation:spin 0.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    footer a { transition:color 0.2s; } footer a:hover { color:#FFC400; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100" style="box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-9 w-auto" /></a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-heading font-medium">
+        <a href="index.html" class="nav-link text-gray-800">Accueil</a>
+        <div class="dropdown relative">
+          <button class="nav-link flex items-center gap-1 py-2" style="color:#7300ff">La Plateforme <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dropdown-menu absolute top-full left-0 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]" style="box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Entreprises</p>
+            <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil pour les entreprises</a>
+            <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+            <a href="s-inscrire-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Créer un Événement</a>
+            <div class="border-t border-gray-100 my-2"></div>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Artistes</p>
+            <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+            <a href="faq.html" class="block px-3 py-2 rounded-lg bg-purple-50 text-gray-900 font-medium">FAQ Artistes</a>
+          </div>
+        </div>
+        <a href="a-propos.html" class="nav-link text-gray-800">À propos</a>
+        <a href="blog.html" class="nav-link text-gray-800">Blog</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="se-connecter.html" class="btn-outline text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-sm">Créer un évènement</a>
+      </div>
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-gray-100"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Accueil</a>
+      <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Candidatures</a>
+      <a href="faq.html" class="block px-3 py-2 rounded-lg bg-purple-50 font-medium" style="color:#7300ff">FAQ</a>
+      <div class="pt-4 flex flex-col gap-2">
+        <a href="se-connecter.html" class="btn-outline text-center text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-center text-sm">Créer un évènement</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-28 pb-16 text-center" style="background:linear-gradient(135deg,#f8f4ff 0%,#fdfbff 100%);">
+    <div class="max-w-3xl mx-auto px-6">
+      <h1 class="font-heading font-semibold text-gray-900 mb-4" style="font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.03em;">FAQ Artistes et Artisans</h1>
+      <p class="font-body text-gray-500" style="font-weight:300; font-size:1.05rem; line-height:1.7;">Toutes les réponses à vos questions sur la plateforme My Artist Place.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16 bg-white">
+    <div class="max-w-3xl mx-auto px-6">
+      <div id="loading" class="flex justify-center py-20"><div class="spinner"></div></div>
+      <div id="faq-list" class="hidden divide-y divide-purple-50 rounded-3xl overflow-hidden" style="box-shadow:0 4px 32px rgba(115,0,255,0.08);"></div>
+    </div>
+  </section>
+
+  <!-- ARTIST CTA -->
+  <section class="py-20" style="background:linear-gradient(135deg,#7300ff 0%,#3d0099 100%);">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-heading font-semibold text-white mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Vous avez d'autres questions ?</h2>
+      <p class="font-body text-white/70 mb-8" style="font-weight:300; line-height:1.7;">Notre équipe est disponible pour répondre à toutes vos questions sur la plateforme et vous accompagner.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="artistes.html" class="btn-gold text-base px-10 py-4">Rejoindre la communauté</a>
+        <a href="se-connecter.html" class="btn-outline border-white/60 text-white hover:bg-white hover:text-gray-900 text-base px-8 py-4">Se connecter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div class="col-span-2 md:col-span-1"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-8 w-auto mb-4 brightness-0 invert"/><p class="text-sm" style="font-weight:300;line-height:1.7;">La plateforme événementielle à Paris.</p></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Entreprises</h4><ul class="space-y-2 text-sm"><li><a href="application-map.html">L'outil</a></li><li><a href="espace-entreprise.html">Événements</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Artistes</h4><ul class="space-y-2 text-sm"><li><a href="artistes.html">Candidatures</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Compagnie</h4><ul class="space-y-2 text-sm"><li><a href="a-propos.html">À propos</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-xs"><p>© 2024 My Artist Place. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
+    function renderFAQ(items) {
+      const list = document.getElementById('faq-list');
+      list.classList.remove('hidden');
+      list.innerHTML = items.map((item, i) => {
+        const f = item.fields || {};
+        const q = f['Question'] || f['question'] || f['Name'] || f['Titre'] || Object.values(f)[0] || 'Question';
+        const a = f['Réponse'] || f['reponse'] || f['Answer'] || f['answer'] || f['Description'] || Object.values(f)[1] || '';
+        return `
+          <div class="faq-item bg-white ${i === 0 ? 'rounded-t-3xl' : ''} ${i === items.length-1 ? 'rounded-b-3xl' : ''}" id="faq-${i}">
+            <button onclick="toggleFaq(${i})" class="faq-toggle w-full flex items-center justify-between gap-4 px-8 py-6 text-left hover:bg-purple-50/50 transition-colors" aria-expanded="false">
+              <span class="font-heading font-semibold text-gray-900 text-base leading-snug">${q}</span>
+              <svg class="w-5 h-5 text-purple-DEFAULT flex-shrink-0" style="color:#7300ff" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div class="faq-answer px-8 pb-0 font-body text-gray-600" style="font-weight:300; line-height:1.7; font-size:0.95rem;" id="faq-answer-${i}">
+              <div class="pb-6">${a}</div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function toggleFaq(i) {
+      const item = document.getElementById(`faq-${i}`);
+      const answer = document.getElementById(`faq-answer-${i}`);
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+      document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+      if (!isOpen) { item.classList.add('open'); answer.classList.add('open'); }
+    }
+
+    function getMockFAQ() {
+      return [
+        { fields: { Question: 'Comment rejoindre My Artist Place en tant qu\'artiste ?', Réponse: 'Pour rejoindre notre communauté, rendez-vous sur la page "Appels à Candidatures" et remplissez le formulaire de candidature. Notre équipe étudie chaque profil et vous contacte sous 48h.' }},
+        { fields: { Question: 'Quels types d\'artistes peuvent postuler ?', Réponse: 'Tous les artistes sont les bienvenus ! Musiciens, danseurs, stand-uppers, plasticiens, artisans, créateurs… Si vous avez un talent à partager, nous sommes intéressés.' }},
+        { fields: { Question: 'Est-ce que l\'inscription est gratuite pour les artistes ?', Réponse: 'Oui, l\'inscription sur My Artist Place est entièrement gratuite pour les artistes et artisans. Vous pouvez créer votre profil et postuler aux événements sans frais.' }},
+        { fields: { Question: 'Comment fonctionne le processus de candidature pour un événement ?', Réponse: 'Lorsqu\'un lieu publie un événement qui correspond à votre profil, vous recevez une notification. Vous pouvez alors postuler directement via la plateforme en quelques clics.' }},
+        { fields: { Question: 'Comment suis-je rémunéré(e) pour mes prestations ?', Réponse: 'La rémunération est négociée directement avec le lieu organisateur. My Artist Place facilite la mise en relation, mais la contractualisation et le paiement se font entre vous et le lieu.' }},
+        { fields: { Question: 'Puis-je proposer mes propres événements ?', Réponse: 'En tant qu\'artiste, vous pouvez contacter les lieux directement via notre plateforme. Les lieux peuvent également vous contacter s\'ils trouvent votre profil dans notre portfolio.' }},
+        { fields: { Question: 'Comment mettre à jour mon profil artiste ?', Réponse: 'Une fois connecté(e) à votre espace, rendez-vous dans "Mon Profil" pour mettre à jour vos informations, photos, et disponibilités à tout moment.' }},
+        { fields: { Question: 'Quelles sont les zones géographiques couvertes ?', Réponse: 'My Artist Place est principalement actif à Paris et en Île-de-France, avec des événements ponctuels dans d\'autres grandes villes de France.' }},
+      ];
+    }
+
+    async function loadFAQ() {
+      try {
+        if (typeof AIRTABLE_TOKEN === 'undefined' || AIRTABLE_TOKEN === 'YOUR_AIRTABLE_PERSONAL_ACCESS_TOKEN_HERE') throw new Error('No token');
+        const data = await airtableFetch('faq', '?maxRecords=50&view=Grid%20view');
+        const items = data.records || [];
+        document.getElementById('loading').classList.add('hidden');
+        renderFAQ(items.length ? items : getMockFAQ());
+      } catch {
+        document.getElementById('loading').classList.add('hidden');
+        renderFAQ(getMockFAQ());
+      }
+    }
+
+    loadFAQ();
+  </script>
+</body>
+</html>

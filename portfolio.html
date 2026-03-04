@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio Artistes — My Artist Place</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&family=Ubuntu+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="config.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { purple: { DEFAULT: '#7300ff', dark: '#5a00cc' }, gold: '#FFC400', green: '#41D33E' }, fontFamily: { heading: ['Ubuntu', 'sans-serif'], body: ['Ubuntu Sans', 'sans-serif'] } } } };
+  </script>
+  <style>
+    * { box-sizing: border-box; } body { font-family: 'Ubuntu Sans', sans-serif; font-weight: 300; color: #000; margin: 0; }
+    h1, h2, h3, h4, nav { font-family: 'Ubuntu', sans-serif; }
+    .nav-link { position:relative; transition:color 0.2s; } .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#7300ff; transition:width 0.25s; } .nav-link:hover::after { width:100%; } .nav-link:hover { color:#7300ff; }
+    .dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); } .dropdown-menu { opacity:0; pointer-events:none; transform:translateY(-8px); transition:opacity 0.2s,transform 0.2s; }
+    .btn-primary { background:#7300ff; color:#fff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.75rem 1.75rem; transition:background 0.2s,transform 0.15s; box-shadow:0 4px 16px rgba(115,0,255,0.35); display:inline-block; } .btn-primary:hover { background:#5a00cc; transform:translateY(-2px); }
+    .btn-outline { border:2px solid #7300ff; color:#7300ff; font-family:'Ubuntu',sans-serif; font-weight:600; border-radius:9999px; padding:0.65rem 1.5rem; transition:background 0.2s,color 0.2s; display:inline-block; } .btn-outline:hover { background:#7300ff; color:#fff; }
+    .artist-card { transition: transform 0.25s, box-shadow 0.25s; } .artist-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(115,0,255,0.15); }
+    .tag { background: rgba(115,0,255,0.08); color: #7300ff; font-family:'Ubuntu',sans-serif; font-weight:600; font-size:0.75rem; padding:0.25rem 0.75rem; border-radius:9999px; }
+    .spinner { border:3px solid rgba(115,0,255,0.2); border-top-color:#7300ff; border-radius:50%; width:40px; height:40px; animation:spin 0.8s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
+    footer a { transition:color 0.2s; } footer a:hover { color:#FFC400; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100" style="box-shadow:0 2px 16px rgba(0,0,0,0.06);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-9 w-auto" /></a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-heading font-medium">
+        <a href="index.html" class="nav-link text-gray-800">Accueil</a>
+        <div class="dropdown relative">
+          <button class="nav-link flex items-center gap-1 py-2" style="color:#7300ff">La Plateforme <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dropdown-menu absolute top-full left-0 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]" style="box-shadow:0 16px 48px rgba(0,0,0,0.12);">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Entreprises</p>
+            <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil pour les entreprises</a>
+            <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-lg bg-purple-50 text-gray-900 font-medium">Portfolio</a>
+            <a href="s-inscrire-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Créer un Événement</a>
+            <div class="border-t border-gray-100 my-2"></div>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Artistes</p>
+            <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+            <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ Artistes</a>
+          </div>
+        </div>
+        <a href="a-propos.html" class="nav-link text-gray-800">À propos</a>
+        <a href="blog.html" class="nav-link text-gray-800">Blog</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="se-connecter.html" class="btn-outline text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-sm">Créer un évènement</a>
+      </div>
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-gray-100"><svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Accueil</a>
+      <a href="application-map.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">L'outil</a>
+      <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+      <a href="portfolio.html" class="block px-3 py-2 rounded-lg bg-purple-50 font-medium" style="color:#7300ff">Portfolio</a>
+      <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Candidatures</a>
+      <div class="pt-4 flex flex-col gap-2">
+        <a href="se-connecter.html" class="btn-outline text-center text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-center text-sm">Créer un évènement</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-28 pb-16" style="background:linear-gradient(135deg,#f8f4ff 0%,#fdfbff 100%);">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h1 class="font-heading font-semibold text-gray-900 mb-4" style="font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.03em;">Découvrez notre portfolio d'artistes</h1>
+      <p class="font-body text-gray-500 mb-8" style="font-weight:300; font-size:1.05rem; line-height:1.7;">Plasticiens, musiciens, humoristes, danseurs, artisans, créateurs… +1500 talents vérifiés à votre disposition.</p>
+      <!-- Search -->
+      <div class="max-w-lg mx-auto relative">
+        <input type="text" id="search-input" placeholder="Rechercher un artiste…" class="w-full pl-12 pr-4 py-3.5 rounded-2xl border-2 border-gray-100 font-body text-gray-700 focus:outline-none focus:border-purple-DEFAULT transition-colors" style="font-size:0.95rem;" />
+        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+      <!-- Category filters -->
+      <div class="flex flex-wrap justify-center gap-2 mt-5" id="cat-filters">
+        <button onclick="filterCat('all')" class="cat-btn active px-4 py-1.5 rounded-full text-sm font-heading font-semibold transition-colors" style="background:#7300ff;color:#fff;" data-cat="all">Tous</button>
+        <button onclick="filterCat('Musicien')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600" data-cat="Musicien">Musiciens</button>
+        <button onclick="filterCat('Danseur')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600" data-cat="Danseur">Danseurs</button>
+        <button onclick="filterCat('Artisan')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600" data-cat="Artisan">Artisans</button>
+        <button onclick="filterCat('Humoriste')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600" data-cat="Humoriste">Humoristes</button>
+        <button onclick="filterCat('Plasticien')" class="cat-btn px-4 py-1.5 rounded-full text-sm font-heading font-semibold border-2 border-gray-200 text-gray-600" data-cat="Plasticien">Plasticiens</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTISTS GRID -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div id="loading" class="flex justify-center py-20"><div class="spinner"></div></div>
+      <div id="artists-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+      <div id="empty-state" class="hidden text-center py-20">
+        <div class="text-5xl mb-4">🎨</div>
+        <p class="font-heading font-semibold text-gray-700 text-lg">Aucun artiste trouvé</p>
+        <p class="font-body text-gray-400 mt-2">Essayez un autre filtre ou terme de recherche</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center" style="background:linear-gradient(135deg,#7300ff 0%,#3d0099 100%);">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="font-heading font-semibold text-white mb-4" style="font-size:clamp(1.8rem,3.5vw,2.5rem); letter-spacing:-0.03em;">Trouvez votre talent idéal</h2>
+      <p class="font-body text-white/70 mb-8" style="font-weight:300; line-height:1.7;">Créez un événement et recevez directement les candidatures des artistes de notre portfolio.</p>
+      <a href="s-inscrire-entreprise.html" class="btn-gold text-base px-10 py-4">Créer un événement</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+        <div class="col-span-2 md:col-span-1"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-8 w-auto mb-4 brightness-0 invert"/><p class="text-sm" style="font-weight:300;line-height:1.7;">+1500 artistes vérifiés à Paris.</p></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Entreprises</h4><ul class="space-y-2 text-sm"><li><a href="application-map.html">L'outil</a></li><li><a href="espace-entreprise.html">Événements</a></li><li><a href="portfolio.html">Portfolio</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Artistes</h4><ul class="space-y-2 text-sm"><li><a href="artistes.html">Candidatures</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+        <div><h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Compagnie</h4><ul class="space-y-2 text-sm"><li><a href="a-propos.html">À propos</a></li><li><a href="blog.html">Blog</a></li></ul></div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-xs"><p>© 2024 My Artist Place. Tous droits réservés.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+
+    let allArtists = [];
+    let currentCat = 'all';
+
+    function filterCat(cat) {
+      currentCat = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        const active = btn.dataset.cat === cat;
+        btn.style.background = active ? '#7300ff' : '';
+        btn.style.color = active ? '#fff' : '';
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const search = document.getElementById('search-input').value.toLowerCase();
+      const filtered = allArtists.filter(a => {
+        const f = a.fields || {};
+        const name = (f['Name'] || f['Nom'] || '').toLowerCase();
+        const tags = (f['Tags'] || f['Catégorie'] || f['Type'] || '');
+        const matchCat = currentCat === 'all' || (typeof tags === 'string' ? tags.includes(currentCat) : (Array.isArray(tags) && tags.some(t => t.includes(currentCat))));
+        const matchSearch = !search || name.includes(search);
+        return matchCat && matchSearch;
+      });
+      renderArtists(filtered);
+    }
+
+    function renderArtists(artists) {
+      const grid = document.getElementById('artists-grid');
+      const empty = document.getElementById('empty-state');
+      if (!artists.length) { grid.classList.add('hidden'); empty.classList.remove('hidden'); return; }
+      empty.classList.add('hidden');
+      grid.classList.remove('hidden');
+      grid.innerHTML = artists.map(a => {
+        const f = a.fields || {};
+        const name = f['Name'] || f['Nom'] || 'Artiste';
+        const tags = Array.isArray(f['Tags']) ? f['Tags'] : (f['Tags'] ? f['Tags'].split(',').map(t=>t.trim()) : (f['Catégorie'] ? [f['Catégorie']] : []));
+        const desc = f['Description'] || f['Bio'] || f['description'] || '';
+        const photo = (f['Photo'] && f['Photo'][0]) ? f['Photo'][0].url : `https://placehold.co/400x400/7300ff/fff?text=${encodeURIComponent(name.charAt(0))}`;
+        const email = f['Email'] || f['email'] || '';
+        const url = f['URL'] || f['Site'] || f['url'] || '';
+        return `
+          <div class="artist-card rounded-3xl overflow-hidden bg-white" style="box-shadow:0 4px 24px rgba(115,0,255,0.08);">
+            <div class="relative aspect-video overflow-hidden">
+              <img src="${photo}" alt="${name}" class="w-full h-full object-cover" loading="lazy"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              <div class="absolute inset-0" style="background:rgba(115,0,255,0.1);mix-blend-mode:multiply;"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="font-heading font-semibold text-gray-900 text-lg mb-2">${name}</h3>
+              <div class="flex flex-wrap gap-1.5 mb-3">
+                ${tags.slice(0,2).map(t => `<span class="tag">${t}</span>`).join('')}
+                ${tags.length > 2 ? `<span class="tag">+${tags.length-2}</span>` : ''}
+              </div>
+              ${desc ? `<p class="font-body text-gray-500 text-sm mb-4 line-clamp-3" style="font-weight:300;line-height:1.6;">${desc}</p>` : ''}
+              <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+                ${email ? `<a href="mailto:${email}" class="text-gray-400 hover:text-purple-DEFAULT transition-colors" title="Email"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>` : ''}
+                ${url ? `<a href="${url}" target="_blank" rel="noopener" class="text-gray-400 hover:text-purple-DEFAULT transition-colors" title="Site web"><svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>` : ''}
+                <a href="s-inscrire-entreprise.html" class="ml-auto text-sm font-heading font-semibold" style="color:#7300ff;">Recruter →</a>
+              </div>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function getMockArtists() {
+      const types = ['Musicien', 'Danseur', 'Artisan', 'Humoriste', 'Plasticien'];
+      return Array.from({length: 12}, (_, i) => ({
+        fields: {
+          Name: ['Sophie Laurent', 'Marc Dubois', 'Léa Martin', 'Thomas Bernard', 'Emma Petit', 'Nicolas Durand', 'Clara Moreau', 'Antoine Simon', 'Camille Rousseau', 'Hugo Lambert', 'Inès Girard', 'Maxime Bonnet'][i],
+          Tags: [types[i % types.length]],
+          Description: 'Artiste passionné(e) basé(e) à Paris, spécialisé(e) dans les performances live et les animations événementielles.',
+          Photo: [{url: `https://placehold.co/400x400/${['7300ff','FFC400','41D33E','3d0099','e6b000'][i%5]}/${['fff','000','fff','fff','000'][i%5]}?text=${encodeURIComponent(['SL','MD','LM','TB','EP','ND','CM','AS','CR','HL','IG','MB'][i])}`}]
+        }
+      }));
+    }
+
+    async function loadArtists() {
+      try {
+        if (typeof AIRTABLE_TOKEN === 'undefined' || AIRTABLE_TOKEN === 'YOUR_AIRTABLE_PERSONAL_ACCESS_TOKEN_HERE') throw new Error('No token');
+        const data = await airtableFetch('utilisateurs', '?maxRecords=100&view=Grid%20view');
+        allArtists = data.records || [];
+        document.getElementById('loading').classList.add('hidden');
+        renderArtists(allArtists);
+      } catch {
+        document.getElementById('loading').classList.add('hidden');
+        allArtists = getMockArtists();
+        renderArtists(allArtists);
+      }
+    }
+
+    document.getElementById('search-input').addEventListener('input', applyFilters);
+    loadArtists();
+  </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>L'outil pour les entreprises — My Artist Place</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;600;700&family=Ubuntu+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { colors: { purple: { DEFAULT: '#7300ff', dark: '#5a00cc' }, gold: '#FFC400', green: '#41D33E' }, fontFamily: { heading: ['Ubuntu', 'sans-serif'], body: ['Ubuntu Sans', 'sans-serif'] } } } };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Ubuntu Sans', sans-serif; font-weight: 300; color: #000; margin: 0; }
+    h1, h2, h3, h4, h5, nav { font-family: 'Ubuntu', sans-serif; }
+    .nav-link { position: relative; transition: color 0.2s; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#7300ff; transition: width 0.25s; }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #7300ff; }
+    .dropdown:hover .dropdown-menu { opacity:1; pointer-events:all; transform: translateY(0); }
+    .dropdown-menu { opacity:0; pointer-events:none; transform: translateY(-8px); transition: opacity 0.2s, transform 0.2s; }
+    .btn-primary { background: #7300ff; color: #fff; font-family: 'Ubuntu', sans-serif; font-weight: 600; border-radius: 9999px; padding: 0.75rem 1.75rem; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(115,0,255,0.35); display:inline-block; }
+    .btn-primary:hover { background: #5a00cc; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(115,0,255,0.45); }
+    .btn-outline { border: 2px solid #7300ff; color: #7300ff; font-family: 'Ubuntu', sans-serif; font-weight: 600; border-radius: 9999px; padding: 0.65rem 1.5rem; transition: background 0.2s, color 0.2s, transform 0.15s; display:inline-block; }
+    .btn-outline:hover { background: #7300ff; color: #fff; transform: translateY(-2px); }
+    .btn-gold { background: #FFC400; color: #000; font-family: 'Ubuntu', sans-serif; font-weight: 700; border-radius: 9999px; padding: 0.75rem 1.75rem; transition: background 0.2s, transform 0.15s; box-shadow: 0 4px 16px rgba(255,196,0,0.4); display:inline-block; }
+    .btn-gold:hover { background: #e6b000; transform: translateY(-2px); }
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .category-card { transition: transform 0.25s, box-shadow 0.25s; }
+    .category-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(115,0,255,0.18); }
+    footer a { transition: color 0.2s; } footer a:hover { color: #FFC400; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100" style="box-shadow: 0 2px 16px rgba(0,0,0,0.06);">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
+      <a href="index.html"><img src="brand_assets/logo.png" alt="My Artist Place" class="h-9 w-auto" /></a>
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-heading font-medium">
+        <a href="index.html" class="nav-link text-gray-800">Accueil</a>
+        <div class="dropdown relative">
+          <button class="nav-link text-purple-DEFAULT flex items-center gap-1 py-2" style="color:#7300ff">La Plateforme <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+          <div class="dropdown-menu absolute top-full left-0 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 min-w-[220px]" style="box-shadow: 0 16px 48px rgba(0,0,0,0.12);">
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Entreprises</p>
+            <a href="application-map.html" class="block px-3 py-2 rounded-lg bg-purple-50 text-gray-900 font-medium">L'outil pour les entreprises</a>
+            <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+            <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+            <a href="s-inscrire-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Créer un Événement</a>
+            <div class="border-t border-gray-100 my-2"></div>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mb-2 px-2">Des Artistes</p>
+            <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+            <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ Artistes</a>
+          </div>
+        </div>
+        <a href="a-propos.html" class="nav-link text-gray-800">À propos</a>
+        <a href="blog.html" class="nav-link text-gray-800">Blog</a>
+      </nav>
+      <div class="hidden lg:flex items-center gap-3">
+        <a href="se-connecter.html" class="btn-outline text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-sm">Créer un évènement</a>
+      </div>
+      <button id="menu-toggle" class="lg:hidden p-2 rounded-lg hover:bg-gray-100">
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="lg:hidden hidden border-t border-gray-100 bg-white px-6 py-4 space-y-1">
+      <a href="index.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800 font-heading font-medium">Accueil</a>
+      <a href="application-map.html" class="block px-3 py-2 rounded-lg bg-purple-50 text-purple-DEFAULT font-medium">L'outil</a>
+      <a href="espace-entreprise.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Les événements</a>
+      <a href="portfolio.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Portfolio</a>
+      <a href="artistes.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">Appels à Candidatures</a>
+      <a href="faq.html" class="block px-3 py-2 rounded-lg hover:bg-purple-50 text-gray-700">FAQ</a>
+      <a href="a-propos.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">À propos</a>
+      <a href="blog.html" class="block px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-800">Blog</a>
+      <div class="pt-4 flex flex-col gap-2 pb-2">
+        <a href="se-connecter.html" class="btn-outline text-center text-sm">Se connecter</a>
+        <a href="s-inscrire-entreprise.html" class="btn-primary text-center text-sm">Créer un évènement</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-20 text-center" style="background: linear-gradient(135deg, #7300ff 0%, #3d0099 100%);">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1.5 mb-6">
+        <span class="text-white/90 text-sm font-heading font-medium">Pour les professionnels</span>
+      </div>
+      <h1 class="font-heading font-semibold text-white mb-6" style="font-size: clamp(2.2rem, 4.5vw, 3.5rem); letter-spacing: -0.03em;">Votre outil de gestion événementielle</h1>
+      <p class="font-body text-white/75 max-w-2xl mx-auto mb-10" style="font-weight:300; font-size:1.1rem; line-height:1.7;">Gérez, promouvez et animez vos espaces professionnels grâce à une plateforme pensée pour les hôtels, restaurants, et lieux de vie parisiens.</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="s-inscrire-entreprise.html" class="btn-gold text-base px-8 py-3.5">Demander Une Démo</a>
+        <a href="se-connecter.html" class="btn-outline border-white/60 text-white hover:bg-white hover:text-gray-900 text-base px-8 py-3.5">Se connecter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="py-12 bg-black text-white">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-3 gap-8 text-center">
+      <div>
+        <div class="font-heading font-semibold mb-1" style="font-size:2.5rem; color:#FFC400; letter-spacing:-0.03em;">+1 500</div>
+        <div class="text-white/60 text-sm" style="font-weight:300;">Artistes vérifiés</div>
+      </div>
+      <div>
+        <div class="font-heading font-semibold mb-1" style="font-size:2.5rem; color:#FFC400; letter-spacing:-0.03em;">+5 000</div>
+        <div class="text-white/60 text-sm" style="font-weight:300;">Participants inscrits</div>
+      </div>
+      <div>
+        <div class="font-heading font-semibold mb-1" style="font-size:2.5rem; color:#FFC400; letter-spacing:-0.03em;">+400</div>
+        <div class="text-white/60 text-sm" style="font-weight:300;">Événements organisés</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT CATEGORIES -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16 fade-up">
+        <h2 class="font-heading font-semibold text-gray-900 mb-4" style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); letter-spacing: -0.03em;">My Artist Place en quelques chiffres</h2>
+        <p class="font-body text-gray-500 max-w-xl mx-auto" style="font-weight:300; font-size:1.05rem; line-height:1.7;">Nous vous accompagnons dans la conception et l'organisation d'expériences mémorables.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 fade-up">
+
+        <!-- Live -->
+        <div class="category-card rounded-3xl overflow-hidden border border-gray-100" style="box-shadow: 0 8px 32px rgba(115,0,255,0.08);">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/fffb5215-a923-41cb-b6af-ab0aa1fd1d88.jpeg" alt="Prestations Live" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute inset-0" style="background:rgba(115,0,255,0.2); mix-blend-mode:multiply;"></div>
+            <div class="absolute bottom-5 left-5">
+              <span class="bg-purple-DEFAULT text-white text-xs font-heading font-semibold px-3 py-1 rounded-full" style="background:#7300ff;">Live</span>
+            </div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading font-semibold text-gray-900 text-xl mb-3">Prestations Live, Ateliers, Animations</h3>
+            <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">Concerts, stand-up comedy, danse, graffiti live, ateliers créatifs. Donnez vie à vos espaces avec des artistes qui font vibrer votre public.</p>
+            <a href="espace-entreprise.html" class="inline-flex items-center gap-2 mt-5 font-heading font-semibold text-sm hover:gap-3 transition-all" style="color:#7300ff">Explorer <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Marchés -->
+        <div class="category-card rounded-3xl overflow-hidden border border-gray-100" style="box-shadow: 0 8px 32px rgba(115,0,255,0.08);">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/16f75157-1884-4526-a595-cd2ef2770392.jpeg" alt="Marchés de créateurs" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute inset-0" style="background:rgba(255,196,0,0.2); mix-blend-mode:multiply;"></div>
+            <div class="absolute bottom-5 left-5">
+              <span class="text-xs font-heading font-semibold px-3 py-1 rounded-full" style="background:#FFC400; color:#000;">Marché</span>
+            </div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading font-semibold text-gray-900 text-xl mb-3">Marchés de créateurs</h3>
+            <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">Transformez votre hôtel en marché de créateurs de manière ponctuelle ou récurrente. Artisans, créateurs, designers — une expérience unique pour vos clients.</p>
+            <a href="espace-entreprise.html" class="inline-flex items-center gap-2 mt-5 font-heading font-semibold text-sm hover:gap-3 transition-all" style="color:#7300ff">Explorer <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Expositions -->
+        <div class="category-card rounded-3xl overflow-hidden border border-gray-100" style="box-shadow: 0 8px 32px rgba(115,0,255,0.08);">
+          <div class="relative h-56 overflow-hidden">
+            <img src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/7f3e06ad-cd43-4e9b-b4af-711b5d438ca2.jpeg" alt="Expositions" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute inset-0" style="background:rgba(65,211,62,0.15); mix-blend-mode:multiply;"></div>
+            <div class="absolute bottom-5 left-5">
+              <span class="text-white text-xs font-heading font-semibold px-3 py-1 rounded-full" style="background:#41D33E;">Exposition</span>
+            </div>
+          </div>
+          <div class="p-7">
+            <h3 class="font-heading font-semibold text-gray-900 text-xl mb-3">Expositions artistiques</h3>
+            <p class="font-body text-gray-500 text-sm" style="font-weight:300; line-height:1.7;">Des expositions de trois mois qui transforment vos espaces en galeries d'art. Peintures, photographies, sculptures — rotations trimestrielles avec nos artistes sélectionnés.</p>
+            <a href="portfolio.html" class="inline-flex items-center gap-2 mt-5 font-heading font-semibold text-sm hover:gap-3 transition-all" style="color:#7300ff">Voir les artistes <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+
+        <!-- Personnalisé -->
+        <div class="category-card rounded-3xl overflow-hidden" style="background: linear-gradient(135deg, #7300ff 0%, #3d0099 100%); box-shadow: 0 8px 32px rgba(115,0,255,0.25);">
+          <div class="p-10 h-full flex flex-col justify-center text-center">
+            <div class="text-5xl mb-4">✨</div>
+            <h3 class="font-heading font-semibold text-white text-xl mb-3">Je personnalise mon événement</h3>
+            <p class="font-body text-white/75 text-sm mb-6" style="font-weight:300; line-height:1.7;">Vous avez un besoin spécifique ? Notre équipe conçoit des solutions sur-mesure adaptées à votre lieu, votre budget et votre audience.</p>
+            <a href="s-inscrire-entreprise.html" class="btn-gold text-sm mx-auto">Prenons RDV →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASSISTANT CTA -->
+  <section class="py-24" style="background: linear-gradient(135deg, #f8f4ff 0%, #fff 100%);">
+    <div class="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center fade-up">
+      <div>
+        <h2 class="font-heading font-semibold text-gray-900 mb-4" style="font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -0.03em;">Votre assistant événementiel !</h2>
+        <p class="font-body text-gray-500 mb-8" style="font-weight:300; line-height:1.7;">Votre assistant pour gérer la programmation événementielle de votre lieu. Automatisez, simplifiez, et concentrez-vous sur ce qui compte vraiment : vos clients.</p>
+        <a href="s-inscrire-entreprise.html" class="btn-primary">Demander Une Démo</a>
+      </div>
+      <div class="rounded-3xl overflow-hidden" style="box-shadow: 0 12px 48px rgba(115,0,255,0.15);">
+        <img src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/c33b02a8-eee1-49da-bb23-8472c92073cf.jpeg" alt="Tableau de bord" class="w-full h-72 object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <!-- RDV CTA -->
+  <section class="py-20 bg-black text-center">
+    <div class="max-w-3xl mx-auto px-6 fade-up">
+      <h2 class="font-heading font-semibold text-white mb-4" style="font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -0.03em;">Prenez rendez-vous avec notre équipe</h2>
+      <p class="font-body text-white/60 mb-8" style="font-weight:300; line-height:1.7;">Notre équipe est disponible pour vous présenter la plateforme et répondre à toutes vos questions en 30 minutes.</p>
+      <a href="s-inscrire-entreprise.html" class="btn-gold text-base px-10 py-4">Je prends RDV</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white/60 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <img src="brand_assets/logo.png" alt="My Artist Place" class="h-8 w-auto mb-4 brightness-0 invert" />
+          <p class="text-sm" style="font-weight:300; line-height:1.7;">La plateforme événementielle qui connecte les lieux professionnels aux artistes de qualité à Paris.</p>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Entreprises</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="application-map.html">L'outil</a></li>
+            <li><a href="espace-entreprise.html">Les événements</a></li>
+            <li><a href="portfolio.html">Portfolio artistes</a></li>
+            <li><a href="s-inscrire-entreprise.html">Créer un événement</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">Artistes</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="artistes.html">Appels à candidatures</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="se-connecter.html">Se connecter</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-heading font-semibold text-white text-sm uppercase tracking-widest mb-4">My Artist Place</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="a-propos.html">À propos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 text-center text-xs">
+        <p>© 2024 My Artist Place. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
