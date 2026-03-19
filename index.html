@@ -153,52 +153,51 @@
   </header>
 
   <!-- ═══════════════════════════════════════════ HERO ═══ -->
-  <section class="relative min-h-screen flex items-center overflow-hidden">
-    <!-- Video background -->
-    <video class="hero-video" autoplay muted loop playsinline poster="https://placehold.co/1440x900/7300ff/ffffff">
-      <source src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/e5462d8b-4ae0-45c7-b942-f7123de8c484.mp4" type="video/mp4" />
-    </video>
-    <!-- Gradient overlay -->
-    <div class="hero-overlay absolute inset-0"></div>
-    <!-- Grain texture -->
-    <svg class="absolute inset-0 w-full h-full opacity-[0.04] pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-      <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter>
-      <rect width="100%" height="100%" filter="url(#noise)"/>
-    </svg>
+  <section class="relative bg-white overflow-hidden" style="min-height: calc(100vh - 4rem);">
+    <div class="max-w-7xl mx-auto px-6 w-full flex items-center" style="min-height: calc(100vh - 4rem); padding-top: 5rem; padding-bottom: 3rem;">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center w-full">
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 pt-24 pb-16 w-full">
-      <div class="max-w-3xl">
-        <!-- Eyebrow -->
-        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-          <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
-          <span class="text-white/90 text-sm font-heading font-medium">Événements à Paris !</span>
+        <!-- Left: Text content -->
+        <div>
+          <h1 class="font-heading font-bold text-black leading-tight mb-5" style="font-size: clamp(1.9rem, 3.4vw, 3rem); letter-spacing: -0.02em;">
+            La plateforme événementielle pour les lieux de vie.
+          </h1>
+
+          <p class="text-gray-500 mb-8 font-body" style="font-weight:300; line-height:1.75; max-width: 390px; font-size: 0.95rem;">
+            Créez votre compte gratuitement, louez votre espace, publiez vos événements en quelques clics, et recevez des candidatures de talents vérifiés.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="s-inscrire-entreprise.html" class="btn-outline text-sm px-7 py-3">S'inscrire</a>
+            <a href="se-connecter.html" class="btn-primary text-sm px-7 py-3">Se connecter</a>
+          </div>
         </div>
 
-        <!-- Main heading -->
-        <h1 class="font-heading font-semibold text-white leading-tight mb-6" style="font-size: clamp(2.4rem, 5vw, 4rem); letter-spacing: -0.03em;">
-          La plateforme événementielle<br/>pour les lieux de vie.
-        </h1>
+        <!-- Right: Laptop mockup + decorative elements -->
+        <div class="relative hidden lg:flex justify-center items-center" style="height: 420px;">
 
-        <!-- Typewriter -->
-        <p class="text-white/75 text-lg mb-4 font-body" style="font-weight:300; line-height:1.7;">
-          Créez votre compte gratuitement, louez votre espace, publiez vos événements en quelques clics, et recevez des candidatures de talents vérifiés.
-        </p>
+          <!-- Red squiggle decoration -->
+          <svg class="absolute z-10" style="top: 10px; left: -10px; width: 76px; height: 96px;" viewBox="0 0 70 88" fill="none">
+            <path d="M56 8 L16 44 L50 44 L10 80" stroke="#E03050" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
 
-        <div class="flex items-center gap-2 mb-8 text-xl font-heading font-medium text-gold">
-          <span id="typewriter" class="typewriter-cursor"></span>
+          <!-- Video -->
+          <div class="relative z-0" style="width: 460px; max-width: 100%; aspect-ratio: 16/10; overflow: hidden; border-radius: 12px;">
+            <video autoplay muted loop playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="https://assets.softr-files.com/applications/df706aeb-9e78-4aa6-a70f-d6499dc396a6/assets/e5462d8b-4ae0-45c7-b942-f7123de8c484.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <!-- Purple star/asterisk decoration -->
+          <svg class="absolute z-10" style="bottom: 10px; right: -16px; width: 78px; height: 78px;" viewBox="0 0 80 80" fill="none">
+            <line x1="40" y1="4" x2="40" y2="76" stroke="#7300ff" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="4" y1="40" x2="76" y2="40" stroke="#7300ff" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="11" y1="11" x2="69" y2="69" stroke="#7300ff" stroke-width="5.5" stroke-linecap="round"/>
+            <line x1="69" y1="11" x2="11" y2="69" stroke="#7300ff" stroke-width="5.5" stroke-linecap="round"/>
+            <circle cx="40" cy="40" r="5" fill="#7300ff"/>
+          </svg>
+
         </div>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-4">
-          <a href="s-inscrire-entreprise.html" class="btn-primary text-base px-8 py-3.5">Créer un évènement</a>
-          <a href="se-connecter.html" class="btn-outline border-white/60 text-white hover:bg-white hover:text-purple-DEFAULT text-base px-8 py-3.5">Se connecter</a>
-        </div>
-      </div>
-
-      <!-- Scroll hint -->
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50">
-        <span class="text-xs tracking-widest uppercase">Découvrir</span>
-        <svg class="w-5 h-5 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
       </div>
     </div>
   </section>
@@ -445,6 +444,7 @@
     const el = document.getElementById('typewriter');
 
     function type() {
+      if (!el) return;
       const current = phrases[phraseIndex];
       if (!deleting) {
         el.textContent = current.slice(0, charIndex + 1);
